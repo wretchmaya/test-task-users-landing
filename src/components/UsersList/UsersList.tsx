@@ -19,7 +19,7 @@ import { UserCard } from '../UserCard/UserCard';
 import { Button } from '../Button/Button';
 import { Preloader } from '../Preloader/Preloader';
 
-export const UsersList = (): JSX.Element => {
+const UsersList = (): JSX.Element => {
     const users = useAppSelector(selectUsers);
     const page = useAppSelector(selectPage);
     const totalPages = useAppSelector(selectTotalPages);
@@ -62,3 +62,4 @@ export const UsersList = (): JSX.Element => {
         </section>
     );
 };
+export default UsersList;
