@@ -1,9 +1,11 @@
 import { Header } from '../../components/Header/Header';
 import { HeroSection } from '../../components/Hero/Hero';
 import { UsersList } from '../../components/UsersList/UsersList';
-import { UserForm } from '../../components/UserForm/UserForm';
+import UserForm from '../../components/UserForm/index';
 import { CLASSES } from './constants';
 import './styles.less';
+import { Suspense } from 'react';
+import { Preloader } from '../../components/Preloader/Preloader';
 
 export const LandingPage = () => {
     return (
@@ -12,7 +14,9 @@ export const LandingPage = () => {
             <main>
                 <HeroSection />
                 <UsersList />
-                <UserForm />
+                <Suspense fallback={<Preloader />}>
+                    <UserForm />
+                </Suspense>
             </main>
         </div>
     );

@@ -28,7 +28,7 @@ export interface FormValues {
     file: string | Blob;
 }
 
-export const UserForm = () => {
+const UserForm = () => {
     const dispatch = useAppDispatch();
     const userHasBeenCreated = useAppSelector(selectUserHasBeenCreated);
     const isLoading = useAppSelector(selectLoadingFormStatus);
@@ -170,3 +170,5 @@ export const UserForm = () => {
         </>
     );
 };
+
+export default UserForm;
