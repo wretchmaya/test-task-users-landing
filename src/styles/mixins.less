@@ -22,15 +22,8 @@
 }
 
 .radio-button() {
-    .css-vqmohf-MuiButtonBase-root-MuiRadio-root.Mui-checked {
-        color: @color-secondary-blue;
-    }
-    .css-1hhw7if-MuiSvgIcon-root {
-        left: 0.265rem;
-        top: 0.3rem;
-    }
-    .css-11zohuh-MuiSvgIcon-root,
-    .css-1hbvpl3-MuiSvgIcon-root {
-        font-size: 2rem;
+    /** overrides material-ui styles **/
+    .Mui-checked {
+        color: @color-secondary-blue !important;
     }
 }

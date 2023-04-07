@@ -14,7 +14,10 @@ import { FileUploadInput } from '../FileUploadInput/FileUploadInput';
 import { createUserRequest } from '../../store/api';
 import { constructFormData } from './constructFormData';
 import { usePositions } from '../../store/hooks';
-import { selectLoadingFormStatus, selectUserHasBeenCreated } from '../../store/rootReducer';
+import {
+    selectLoadingFormStatus,
+    selectUserHasBeenCreated,
+} from '../../store/rootReducer';
 import { Preloader } from '../Preloader/Preloader';
 import { Banner } from '../Banner/Banner';
 
@@ -136,6 +139,11 @@ export const UserForm = () => {
                                                     <Radio
                                                         id={position.id.toString()}
                                                         name={position.name}
+                                                        sx={{
+                                                            '& svg': {
+                                                                fontSize: '2rem',
+                                                            },
+                                                        }}
                                                     />
                                                 }
                                                 label={position.name}
