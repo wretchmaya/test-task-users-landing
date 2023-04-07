@@ -1,0 +1,37 @@
+@import '../../styles/colors.less';
+@import '../../styles/mixins.less';
+@import '../../styles/media-query.less';
+
+.users-list-ui {
+    margin: 14rem 1.6rem 14rem;
+
+    @media @desktop {
+        margin: 14rem 3.1rem 14rem;
+    }
+
+    &__title {
+        .set-heading-font();
+        margin-bottom: 5rem;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        max-width: 97rem;
+        margin: 0 auto 5rem;
+
+        @media @tablet {
+            justify-content: space-evenly;
+            align-items: flex-start;
+            flex-direction: row;
+        }
+
+        @media @extra-wide-desktop {
+            max-width: 117rem;
+            justify-content: space-between;
+        }
+    }
+}

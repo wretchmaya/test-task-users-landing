@@ -1,0 +1,30 @@
+@import '../../styles/colors.less';
+
+.preloader-ui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__spinner {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: 0.4rem solid @color-secondary-blue;
+        border-top-color: transparent;
+        animation: preloader 0.8s linear infinite;
+
+        .form-ui & {
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+}
+
+@keyframes preloader {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

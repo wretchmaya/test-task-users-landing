@@ -1,0 +1,41 @@
+@import '../../styles/colors.less';
+@import '../../styles/mixins.less';
+@import '../../styles/media-query.less';
+
+.hero-ui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./../../assets/landing-hero-background.png');
+    height: 50rem;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: @color-white;
+    margin: 0 auto;
+
+    @media @desktop {
+        max-width: 117rem;
+        height: 65rem;
+    }
+
+    &__content {
+        width: 32.8rem;
+        margin-bottom: 3.3rem;
+
+        @media @tablet {
+            width: 38rem;
+            margin-bottom: 0;
+        }
+    }
+
+    &__title {
+        .set-heading-font();
+        margin-bottom: 2.1rem;
+    }
+    &__text {
+        .set-body-font();
+        margin-bottom: 3.2rem;
+    }
+}

@@ -1,0 +1,63 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createUserRequest, fetchUpdatedUsersRequest, fetchUsersRequest } from './api';
+import { RootState } from './store';
+import { UsersRequestResponse, LandingState } from './types';
+
+const initialState: LandingState = {
+    users: [],
+    page: 1,
+    totalPages: 0,
+    isLoadingList: false,
+    isLoadingForm: false,
+    userHasBeenCreated: false,
+};
+
+export const landingSlice = createSlice({
+    name: 'landing',
+    initialState,
+    reducers: {},
+    extraReducers: builder => {
+        builder.addCase(fetchUsersRequest.pending, state => {
+            state.isLoadingList = true;
+        });
+        builder.addCase(
+            fetchUsersRequest.fulfilled,
+            (state, action: PayloadAction<UsersRequestResponse>) => {
+                state.isLoadingList = false;
+                state.users = [...state.users, ...action.payload.users];
+                state.page = action.payload.page;
+                state.totalPages = action.payload.total_pages;
+            }
+        );
+
+        builder.addCase(createUserRequest.pending, state => {
+            state.isLoadingForm = true;
+        });
+        builder.addCase(createUserRequest.fulfilled, state => {
+            state.userHasBeenCreated = true;
+            state.isLoadingForm = false;
+        });
+
+        builder.addCase(fetchUpdatedUsersRequest.pending, state => {
+            state.isLoadingList = true;
+        });
+        builder.addCase(
+            fetchUpdatedUsersRequest.fulfilled,
+            (state, action: PayloadAction<UsersRequestResponse>) => {
+                state.isLoadingList = false;
+                state.userHasBeenCreated = false;
+                state.users = [...action.payload.users];
+            }
+        );
+    },
+});
+
+export const selectUsers = (state: RootState) => state.landing.users;
+export const selectPage = (state: RootState) => state.landing.page;
+export const selectTotalPages = (state: RootState) => state.landing.totalPages;
+export const selectLoadingListStatus = (state: RootState) => state.landing.isLoadingList;
+export const selectLoadingFormStatus = (state: RootState) => state.landing.isLoadingForm;
+export const selectUserHasBeenCreated = (state: RootState) =>
+    state.landing.userHasBeenCreated;
+
+export default landingSlice.reducer;

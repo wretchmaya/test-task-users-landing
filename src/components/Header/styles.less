@@ -1,0 +1,36 @@
+@import '../../styles/colors.less';
+@import '../../styles/mixins.less';
+@import '../../styles/media-query.less';
+
+.header-ui {
+    padding: 1.3rem 1.6rem;
+    background-color: @color-white;
+
+    &__content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        max-width: 117rem;
+        margin: 0 auto;
+    }
+
+    @media @desktop {
+        padding: 1.3rem 6rem;
+        max-width: unset;
+    }
+
+    @media @broad-desktop {
+        padding: 1.3rem 0;
+        justify-content: space-around;
+    }
+
+    &__logo {
+        width: 10.4rem;
+        height: 2.6rem;
+        margin-top: 0.5rem;
+    }
+    &__button-wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 21rem;
+    }
+}

@@ -1,0 +1,60 @@
+@import '../../styles/colors.less';
+@import '../../styles/mixins.less';
+@import '../../styles/media-query.less';
+
+.form-ui {
+    padding: 0 1.6rem 10rem;
+
+    &__title {
+        .set-heading-font();
+        margin-bottom: 5rem;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 38rem;
+        margin: 0 auto;
+    }
+
+    &__radio-group {
+        margin-bottom: 4rem;
+        width: 100%;
+        .radio-button();
+
+        &-title {
+            .set-body-font();
+            text-align: left;
+            margin-bottom: 0.4rem;
+        }
+
+        &-label {
+            span {
+                .set-body-font();
+            }
+        }
+    }
+
+    /** overrides materila-ui styles **/
+    .form-field {
+        margin-bottom: 5rem;
+
+        input {
+            .set-body-font();
+            height: 2.1rem;
+        }
+
+        label {
+            .set-form-tooltip-font();
+            line-height: 2.1rem;
+        }
+
+        p {
+            .set-form-tooltip-font();
+            position: absolute;
+            top: 5.1rem;
+        }
+    }
+}
