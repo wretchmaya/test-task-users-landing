@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
     selectLoadingListStatus,
@@ -18,6 +18,7 @@ import './styles.less';
 import { UserCard } from '../UserCard/UserCard';
 import { Button } from '../Button/Button';
 import { Preloader } from '../Preloader/Preloader';
+import { setEqualMaxHeight } from '../../utils/setEqualMaxHeight';
 
 const UsersList = (): JSX.Element => {
     const users = useAppSelector(selectUsers);
@@ -26,12 +27,17 @@ const UsersList = (): JSX.Element => {
     const isLoading = useAppSelector(selectLoadingListStatus);
     const userHasBeenAdded = useAppSelector(selectUserHasBeenCreated);
     const dispatch = useAppDispatch();
+    const containerRef = useRef<HTMLDivElement>(null);
     const nextPage = page + 1;
 
     useEffect(() => {
         dispatch(fetchUsersRequest(page));
         dispatch(getTokenRequest());
     }, []);
+
+    useEffect(() => {
+        setEqualMaxHeight(containerRef);
+    }, [users]);
 
     const handleShowMore = () => {
         if (!userHasBeenAdded) {
@@ -52,7 +58,7 @@ const UsersList = (): JSX.Element => {
         <section className={CLASSES.USERS_LIST_UI}>
             <h1 className={CLASSES.USERS_LIST__TITLE}>{TEXT.USER_LIST_SECTION.TITLE}</h1>
 
-            <div className={CLASSES.USERS_LIST__CONTENT}>
+            <div className={CLASSES.USERS_LIST__CONTENT} ref={containerRef}>
                 {users.map((user, index) => {
                     return <UserCard {...user} key={index} />;
                 })}
