@@ -3,7 +3,7 @@ import landingReducer from './rootReducer';
 
 export const store = configureStore({
 	reducer: {
-		landing: landingReducer,
+		mainStore: landingReducer,
 	},
 });
 

@@ -52,12 +52,12 @@ export const landingSlice = createSlice({
     },
 });
 
-export const selectUsers = (state: RootState) => state.landing.users;
-export const selectPage = (state: RootState) => state.landing.page;
-export const selectTotalPages = (state: RootState) => state.landing.totalPages;
-export const selectLoadingListStatus = (state: RootState) => state.landing.isLoadingList;
-export const selectLoadingFormStatus = (state: RootState) => state.landing.isLoadingForm;
+export const selectUsers = (state: RootState) => state.mainStore.users;
+export const selectPage = (state: RootState) => state.mainStore.page;
+export const selectTotalPages = (state: RootState) => state.mainStore.totalPages;
+export const selectLoadingListStatus = (state: RootState) => state.mainStore.isLoadingList;
+export const selectLoadingFormStatus = (state: RootState) => state.mainStore.isLoadingForm;
 export const selectUserHasBeenCreated = (state: RootState) =>
-    state.landing.userHasBeenCreated;
+    state.mainStore.userHasBeenCreated;
 
 export default landingSlice.reducer;
