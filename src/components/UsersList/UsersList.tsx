@@ -8,8 +8,8 @@ import {
     selectUsers,
 } from '../../store/rootReducer';
 import {
-    fetchUpdatedUsersRequest,
     fetchUsersRequest,
+    fetchShowMoreUsersRequest,
     getTokenRequest,
 } from '../../store/api';
 import { TEXT } from '../../constants/text';
@@ -31,7 +31,7 @@ const UsersList = (): JSX.Element => {
     const nextPage = page + 1;
 
     useEffect(() => {
-        dispatch(fetchUsersRequest(page));
+        dispatch(fetchUsersRequest());
         dispatch(getTokenRequest());
     }, []);
 
@@ -41,10 +41,10 @@ const UsersList = (): JSX.Element => {
 
     const handleShowMore = () => {
         if (!userHasBeenAdded) {
-            dispatch(fetchUsersRequest(nextPage));
+            dispatch(fetchShowMoreUsersRequest(nextPage));
             return;
         }
-        dispatch(fetchUpdatedUsersRequest());
+        dispatch(fetchUsersRequest());
     };
 
     const isShowMoreShown = () => {
@@ -59,8 +59,8 @@ const UsersList = (): JSX.Element => {
             <h1 className={CLASSES.USERS_LIST__TITLE}>{TEXT.USER_LIST_SECTION.TITLE}</h1>
 
             <div className={CLASSES.USERS_LIST__CONTENT} ref={containerRef}>
-                {users.map((user, index) => {
-                    return <UserCard {...user} key={index} />;
+                {users.map(user => {
+                    return <UserCard {...user} key={user.id} />;
                 })}
             </div>
 

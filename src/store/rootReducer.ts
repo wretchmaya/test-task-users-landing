@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createUserRequest, fetchUpdatedUsersRequest, fetchUsersRequest } from './api';
+import { createUserRequest, fetchUsersRequest, fetchShowMoreUsersRequest } from './api';
 import { RootState } from './store';
 import { UsersRequestResponse, LandingState } from './types';
 
@@ -17,11 +17,11 @@ export const landingSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(fetchUsersRequest.pending, state => {
+        builder.addCase(fetchShowMoreUsersRequest.pending, state => {
             state.isLoadingList = true;
         });
         builder.addCase(
-            fetchUsersRequest.fulfilled,
+            fetchShowMoreUsersRequest.fulfilled,
             (state, action: PayloadAction<UsersRequestResponse>) => {
                 state.isLoadingList = false;
                 state.users = [...state.users, ...action.payload.users];
@@ -38,11 +38,11 @@ export const landingSlice = createSlice({
             state.isLoadingForm = false;
         });
 
-        builder.addCase(fetchUpdatedUsersRequest.pending, state => {
+        builder.addCase(fetchUsersRequest.pending, state => {
             state.isLoadingList = true;
         });
         builder.addCase(
-            fetchUpdatedUsersRequest.fulfilled,
+            fetchUsersRequest.fulfilled,
             (state, action: PayloadAction<UsersRequestResponse>) => {
                 state.isLoadingList = false;
                 state.userHasBeenCreated = false;
@@ -55,8 +55,10 @@ export const landingSlice = createSlice({
 export const selectUsers = (state: RootState) => state.mainStore.users;
 export const selectPage = (state: RootState) => state.mainStore.page;
 export const selectTotalPages = (state: RootState) => state.mainStore.totalPages;
-export const selectLoadingListStatus = (state: RootState) => state.mainStore.isLoadingList;
-export const selectLoadingFormStatus = (state: RootState) => state.mainStore.isLoadingForm;
+export const selectLoadingListStatus = (state: RootState) =>
+    state.mainStore.isLoadingList;
+export const selectLoadingFormStatus = (state: RootState) =>
+    state.mainStore.isLoadingForm;
 export const selectUserHasBeenCreated = (state: RootState) =>
     state.mainStore.userHasBeenCreated;
 
